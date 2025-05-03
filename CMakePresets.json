@@ -1,0 +1,59 @@
+{
+    "version": 6,
+    "cmakeMinimumRequired": {
+        "major": 4,
+        "minor": 0,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "vcpkg",
+            "hidden": true,
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+            "cacheVariables": {
+                "VCPKG_OVERLAY_TRIPLETS": "${sourceDir}/cmake"
+            }
+        },
+        {
+            "name": "x64-linux-clang",
+            "hidden": true,
+            "inherits": "vcpkg",
+            "cacheVariables": {
+                "VCPKG_TARGET_TRIPLET": "x64-linux-clang-libcxx",
+                "VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/x64-linux-clang-libcxx.toolchain.cmake"
+            }
+        },
+        {
+            "name": "clang-debug",
+            "inherits": "x64-linux-clang",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "clang-release",
+            "inherits": "x64-linux-clang",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "clang-debug-build",
+            "configurePreset": "clang-debug"
+        },
+        {
+            "name": "clang-release-build",
+            "configurePreset": "clang-release"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "clang-debug-test",
+            "configurePreset": "clang-debug"
+        }
+    ]
+}
