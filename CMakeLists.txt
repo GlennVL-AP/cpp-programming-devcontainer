@@ -4,7 +4,7 @@ include("${CMAKE_CURRENT_LIST_DIR}/cmake/cpprog.cmake")
 
 cpprog_init()
 
-project(CppProgLabo11 VERSION 0.0.1 LANGUAGES C CXX)
+project(CppProgLaboX VERSION 0.0.1 LANGUAGES C CXX)
 
 add_subdirectory(src)
 
