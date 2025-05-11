@@ -1,4 +1,4 @@
-# devcontainer-labo-11
+# cpp-programming-devcontainer
 
 ## Devcontainer
 
